@@ -22,15 +22,14 @@ function dataToString (year, destination){
 
 map.on('load', function() {
     map.addSource("data", {
-        "type": "vector",
-        url: 'mapbox://agnieszkajot.cj486gvg8090n2wlfwr62oawi-075p4'
+        "type": "geojson",
+        data: europe
     });
 
     map.addLayer({
         id: 'kartokraje',
         type: 'fill',
         source: 'data',
-        'source-layer': 'kartokraje',
         layout: {
             visibility: 'visible'
         },
@@ -44,7 +43,6 @@ map.on('load', function() {
         id: 'kraje_highlight',
         type: 'fill',
         source: 'data',
-        'source-layer': 'kartokraje',
         layout: {
             visibility: 'visible'
         },
@@ -58,7 +56,7 @@ map.on('load', function() {
 
 
     map.on('click', 'kartokraje', function (e) {
-        var country = e.features[0].properties.ISO3;
+        var country = e.features[0].properties.ISO_A3;
         console.log(country);
         var strings = dataToString(2015,country);
         new mapboxgl.Popup()
