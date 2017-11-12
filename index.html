@@ -6,14 +6,23 @@
         <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.37.0/mapbox-gl.js'></script>
         <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.37.0/mapbox-gl.css' rel='stylesheet' />
         <link rel="stylesheet" type="text/css" href="style.css" />
+        <link href='https://www.mapbox.com/base/latest/base.css?v1.0' rel='stylesheet' />
+
     </head>
     <body>
         <h1 id="title">Interaktywna mapa przedstawiająca imigrację na terenie Europy oraz Azji Mniejszej</h1>
-        <div id="map"></div>
+
+        <div id="map">
+            <div id="migration-button" class='rounded-toggle inline'>
+                <input id='emigracja' type='radio' name='rtoggle' value='emigracha' checked='checked'>
+                <label for='emigracja'>Emigracja</label>
+                <input id='imigracja' type='radio' name='rtoggle' value='imigracja'>
+                <label for='imigracja'>Imigracja</label>
+            </div>
+        </div>
 
         <script src="europe.js"></script>
         <script src="data.js"></script>
         <script src="script.js"></script>
-
     </body>
 </html>
