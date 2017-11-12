@@ -14,21 +14,29 @@ map.addControl(new mapboxgl.ScaleControl({
 map.addControl(new mapboxgl.ScaleControl());
 
 function getMigrationValue (origin, asylum, year){
-    value = 0;
-    data.forEach(function(e) {
+    value = undefined;
+    for (let e of dataByYear[year]) {
         if (e.origin == origin && e.asylum == asylum && e.year == year) {
             value = e.value;
+            break;
         }
-    });
+    }
     return value;
 }
 
-function dataToString (year, destination){
-    filtered = data.filter(e => e.year == year);
+function filterData (year, destination){
+    var filtered = data.filter(e => e.year == year);
     filtered = filtered.filter(e => e.asylum == destination);
-    strings = filtered.map(e => e.origin + ": " + e.value);
-    return strings;
+    return filtered;
 }
+
+var dataByYear = {};
+data.forEach(e => {
+    if(dataByYear[e.year] == undefined) {
+        dataByYear[e.year] = [];
+    }
+    dataByYear[e.year].push(e);
+});
 
 map.on('load', function() {
     map.addSource("data", {
@@ -37,20 +45,20 @@ map.on('load', function() {
     });
 
     map.addLayer({
-        id: 'kartokraje',
+        id: 'countries',
         type: 'fill',
         source: 'data',
         layout: {
             visibility: 'visible'
         },
         paint: {
-            'fill-color': 'rgba(200, 100, 240, 0.2)',
-            'fill-outline-color': 'rgba(200, 100, 240, 1)'
+            'fill-color': 'rgba(200, 100, 240, 0.02)',
+            'fill-outline-color': 'rgba(200, 100, 240, 0.6)'
         }
     });
 
     map.addLayer({
-        id: 'kraje_highlight',
+        id: 'countries_highlight',
         type: 'fill',
         source: 'data',
         layout: {
@@ -73,23 +81,23 @@ map.on('load', function() {
             },
             'fill-outline-color': 'rgba(200, 100, 240, 1)'
         },
+        "filter": ["in", "ISO_A3", ""]
     });
 
 
 
-    map.on('click', 'kartokraje', function (e) {
+    map.on('click', 'countries', function (e) {
         var country = e.features[0].properties.ISO_A3;
         console.log(country);
         europe.features.forEach((e, i) => europe.features[i].properties['value'] = getMigrationValue(e.properties.ISO_A3, country, 2015));
         map.getSource('data').setData(europe);
+        var filtered = filterData(2015, country)
+        var strings = filtered.map(e => e.origin + ": " + e.value);
 
-        var strings = dataToString(2015,country);
         new mapboxgl.Popup()
             .setLngLat(e.lngLat)
             .setHTML(strings.join("<br>"))
             .addTo(map);
-        //map.setFilter("kraje_highlight", ["in", "NAME"].concat(filtered.map(e => e.origin)).concat(e.features[0].properties.NAME));
+        map.setFilter("countries_highlight", ["in", "ISO_A3"].concat(filtered.map(e => e.origin)));
     });
 });
-
-var year = document.getElementById('year');
