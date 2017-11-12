@@ -10,19 +10,22 @@
 
     </head>
     <body>
-        <h1 id="title">Interaktywna mapa przedstawiająca imigrację na terenie Europy oraz Azji Mniejszej</h1>
-
-        <div id="map">
-            <div id="migration-button" class='rounded-toggle inline'>
-                <input id='emigracja' type='radio' name='rtoggle' value='emigracha' checked='checked'>
-                <label for='emigracja'>Emigracja</label>
-                <input id='imigracja' type='radio' name='rtoggle' value='imigracja'>
-                <label for='imigracja'>Imigracja</label>
+        <div id="app">
+            <h1 id="title">{{ title }}</h1>
+            <div id="map">
+                <div id="migration-button" class='rounded-toggle inline'>
+                    <input id='emigracja' type='radio' name='rtoggle' value='emigracha' checked='checked'>
+                    <label for='emigracja'>Emigracja</label>
+                    <input id='imigracja' type='radio' name='rtoggle' value='imigracja'>
+                    <label for='imigracja'>Imigracja</label>
+                </div>
             </div>
         </div>
 
         <script src="europe.js"></script>
         <script src="data.js"></script>
         <script src="script.js"></script>
+        <script src="vue.js"></script>
+        <script src="app.js"></script>
     </body>
 </html>
