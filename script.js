@@ -98,6 +98,11 @@ function filterData (year, destination){
     return filtered;
 }
 
+var years = [];
+for (i = 1999; i < 2018; i++){
+	years.push(i);
+}
+
 var dataByYear = {};
 data.forEach(e => {
     if(dataByYear[e.year] == undefined) {

@@ -12,17 +12,35 @@
     <body>
         <div id="app">
             <h1 id="title">{{ title }}</h1>
-            <div id="map">
-                <div id="migration-button" class='rounded-toggle inline'>
-                    <input id='emigracja' type='radio' name='rtoggle' value='emigracha' checked='checked'>
-                    <label for='emigracja'>Emigracja</label>
-                    <input id='imigracja' type='radio' name='rtoggle' value='imigracja'>
-                    <label for='imigracja'>Imigracja</label>
-                </div>
-            </div>
+			<button v-on:click="todos.push({ text: 'kochać maciusia' })">Add 1</button>
+			
+			<select v-model="selected">
+				<option v-for="year in years" v-bind:value="year">
+				{{ year }}
+				</option>
+			</select>
+			
+			<ol>
+				<table style="width:100%">
+				<tr>
+					<th>Origin</th>
+					<th>Asylum</th> 
+					<th>Value</th>
+					<th>Year</th>
+				</tr>
+				<tr v-for="d in data">
+					<th>{{ d.origin }}</th>
+					<th>{{ d.asylum }}</th>
+					<th>{{ d.value }}</th>
+					<th>{{ d.year }}</th>	   
+				</table>
+			</ol>
+			
+			<span>Selected: {{ selected }}</span>
+            <!-- <div id="map"></div>  -->
         </div>
-
         <script src="europe.js"></script>
+        <script src="country_mapping.js"></script>
         <script src="data.js"></script>
         <script src="script.js"></script>
         <script src="vue.js"></script>
