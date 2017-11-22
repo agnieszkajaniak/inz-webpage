@@ -135,6 +135,10 @@ var countryMapping = {
     "name": "Norway",
     "nazwa": "Norwegia"
   },
+  "PSE": {
+	  "name": "Palestinian",
+	  "nazwa": "Palestyna"
+  },
   "POL": {
     "name": "Poland",
     "nazwa": "Polska"
