@@ -2,14 +2,12 @@ var app = new Vue({
     el: '#app',
     data: {
         title: 'Interaktywna mapa przedstawiająca imigrację na terenie Europy oraz Azji Mniejszej',
-		todos: [
-		  { text: 'Learn JavaScript' },
-		  { text: 'Learn Vue' },
-		  { text: 'Build something awesome' }
-		],
 		selected: null,
+		selected_countries: 'Polska',
 		data: data,
-		years: years
+		years: years,
+		countryPolishName: countryPolishName
+		
     },
     mounted: function() {
         map = initMap();

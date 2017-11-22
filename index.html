@@ -12,11 +12,17 @@
     <body>
         <div id="app">
             <h1 id="title">{{ title }}</h1>
-			<button v-on:click="todos.push({ text: 'kochać maciusia' })">Add 1</button>
 			
 			<select v-model="selected">
 				<option v-for="year in years" v-bind:value="year">
 				{{ year }}
+				</option>
+			</select>
+			
+			<select v-model="selected_countries">
+				<option disabled value="">Proszę wybrać kraj</option>
+				<option v-for="country in countryPolishName" v-bind:value="country">
+				{{ country }}
 				</option>
 			</select>
 			
@@ -37,7 +43,7 @@
 			</ol>
 			
 			<span>Selected: {{ selected }}</span>
-            <!-- <div id="map"></div>  -->
+            <div id="map"></div>
         </div>
         <script src="europe.js"></script>
         <script src="country_mapping.js"></script>

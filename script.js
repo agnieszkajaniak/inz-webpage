@@ -19,7 +19,7 @@ function initMap() {
             "type": "geojson",
             data: europe
         });
-
+		
         map.addLayer({
             id: 'countries',
             type: 'fill',
@@ -28,7 +28,7 @@ function initMap() {
                 visibility: 'visible'
             },
             paint: {
-                'fill-color': 'rgba(200, 100, 240, 0.02)',
+                'fill-color': 'rgba(200, 100, 240, 0.5)',
                 'fill-outline-color': 'rgba(200, 100, 240, 0.6)'
             }
         });
@@ -65,9 +65,9 @@ function initMap() {
         map.on('click', 'countries', function (e) {
             var country = e.features[0].properties.ISO_A3;
             console.log(country);
-            europe.features.forEach((e, i) => europe.features[i].properties['value'] = getMigrationValue(e.properties.ISO_A3, country, 2015));
+            europe.features.forEach((e, i) => europe.features[i].properties['value'] = getMigrationValue(e.properties.ISO_A3, country, app.selected));
             map.getSource('data').setData(europe);
-            var filtered = filterData(2015, country)
+            var filtered = filterData(app.selected, country)
             var strings = filtered.map(e => e.origin + ": " + e.value);
 
             new mapboxgl.Popup()
@@ -110,3 +110,10 @@ data.forEach(e => {
     }
     dataByYear[e.year].push(e);
 });
+var countryPolishName = [];
+for (var i in countryMapping){
+countryPolishName.push(countryMapping[i].nazwa);
+}
+
+
+	
