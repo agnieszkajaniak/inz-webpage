@@ -199,6 +199,10 @@ var countryMapping = {
     "name": "Turkey",
     "nazwa": "Turcja"
   },
+  "UKR": {
+	"name": "Ukraine",
+	"nazwa": "Ukraina"
+  },
   "GBR": {
     "name": "United Kingdom of Great Britain and Northern Ireland",
     "nazwa": "Wielka Brytania"
