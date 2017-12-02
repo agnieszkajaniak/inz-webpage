@@ -28,7 +28,7 @@ function initMap() {
                 visibility: 'visible'
             },
             paint: {
-                'fill-color': 'rgba(200, 100, 240, 0.5)',
+                'fill-color': 'rgba(200, 100, 240, 0.05)',
                 'fill-outline-color': 'rgba(200, 100, 240, 0.6)'
             }
         });
@@ -62,24 +62,24 @@ function initMap() {
 
 
 
-        map.on('click', 'countries', function (e) {
-            var country = e.features[0].properties.ISO_A3;
-            console.log(country);
-            europe.features.forEach((e, i) => europe.features[i].properties['value'] = getMigrationValue(e.properties.ISO_A3, country, app.selected));
-            map.getSource('data').setData(europe);
-            var filtered = filterData(app.selected, country)
-            var strings = filtered.map(e => e.origin + ": " + e.value);
-
-            new mapboxgl.Popup()
-                .setLngLat(e.lngLat)
-                .setHTML(strings.join("<br>"))
-                .addTo(map);
-            map.setFilter("countries_highlight", ["in", "ISO_A3"].concat(filtered.map(e => e.origin)));
+        map.on('click', 'countries', function (e){
+           	country = e.features[0].properties.ISO_A3;
+			countryHighlight(country);
         });
     });
 
     return map;
 }
+
+function countryHighlight (country){ 
+	console.log(country);
+    europe.features.forEach((e, i) => europe.features[i].properties['value'] = getMigrationValue(e.properties.ISO_A3, country, app.selected_year));
+    map.getSource('data').setData(europe);
+    var filtered = filterData(app.selected_year, country)
+    var strings = filtered.map(e => e.origin + ": " + e.value);
+	map.setFilter("countries_highlight", ["in", "ISO_A3"].concat(filtered.map(e => e.origin)));
+}
+	
 
 function getMigrationValue (origin, asylum, year){
     value = undefined;
@@ -110,10 +110,10 @@ data.forEach(e => {
     }
     dataByYear[e.year].push(e);
 });
+
 var countryPolishName = [];
 for (var i in countryMapping){
 countryPolishName.push(countryMapping[i].nazwa);
 }
 
-
-	
+var country;

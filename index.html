@@ -13,13 +13,13 @@
         <div id="app">
             <h1 id="title">{{ title }}</h1>
 			
-			<select v-model="selected">
+			<select v-model="selected_year">
 				<option v-for="year in years" v-bind:value="year">
 				{{ year }}
 				</option>
 			</select>
 			
-			<select v-model="selected_countries">
+			<select v-model="selected_country">
 				<option disabled value="">Proszę wybrać kraj</option>
 				<option v-for="country in countryPolishName" v-bind:value="country">
 				{{ country }}
@@ -42,7 +42,7 @@
 				</table>
 			</ol>
 			
-			<span>Selected: {{ selected }}</span>
+
             <div id="map"></div>
         </div>
         <script src="europe.js"></script>
