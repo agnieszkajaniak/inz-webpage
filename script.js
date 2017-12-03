@@ -19,7 +19,7 @@ function initMap() {
             "type": "geojson",
             data: europe
         });
-		
+
         map.addLayer({
             id: 'countries',
             type: 'fill',
@@ -63,8 +63,8 @@ function initMap() {
 
 
         map.on('click', 'countries', function (e){
-           	country = e.features[0].properties.ISO_A3;
-			countryHighlight(country);
+            country = e.features[0].properties.ISO_A3;
+            countryHighlight(country);
         });
     });
 
@@ -72,14 +72,14 @@ function initMap() {
 }
 
 function countryHighlight (country){ 
-	console.log(country);
+    console.log(country);
     europe.features.forEach((e, i) => europe.features[i].properties['value'] = getMigrationValue(e.properties.ISO_A3, country, app.selected_year));
     map.getSource('data').setData(europe);
     var filtered = filterData(app.selected_year, country)
     var strings = filtered.map(e => e.origin + ": " + e.value);
-	map.setFilter("countries_highlight", ["in", "ISO_A3"].concat(filtered.map(e => e.origin)));
+    map.setFilter("countries_highlight", ["in", "ISO_A3"].concat(filtered.map(e => e.origin)));
 }
-	
+
 
 function getMigrationValue (origin, asylum, year){
     value = undefined;
@@ -100,7 +100,7 @@ function filterData (year, destination){
 
 var years = [];
 for (i = 1999; i < 2018; i++){
-	years.push(i);
+    years.push(i);
 }
 
 var dataByYear = {};
@@ -110,10 +110,3 @@ data.forEach(e => {
     }
     dataByYear[e.year].push(e);
 });
-
-var countryPolishName = [];
-for (var i in countryMapping){
-countryPolishName.push(countryMapping[i].nazwa);
-}
-
-var country;

@@ -12,36 +12,36 @@
     <body>
         <div id="app">
             <h1 id="title">{{ title }}</h1>
-			
-			<select v-model="selected_year">
-				<option v-for="year in years" v-bind:value="year">
-				{{ year }}
-				</option>
-			</select>
-			
-			<select v-model="selected_country">
-				<option disabled value="">Proszę wybrać kraj</option>
-				<option v-for="country in countryPolishName" v-bind:value="country">
-				{{ country }}
-				</option>
-			</select>
-			
-			<ol>
-				<table style="width:100%">
-				<tr>
-					<th>Origin</th>
-					<th>Asylum</th> 
-					<th>Value</th>
-					<th>Year</th>
-				</tr>
-				<tr v-for="d in data">
-					<th>{{ d.origin }}</th>
-					<th>{{ d.asylum }}</th>
-					<th>{{ d.value }}</th>
-					<th>{{ d.year }}</th>	   
-				</table>
-			</ol>
-			
+
+            <select v-model="selected_year">
+                <option v-for="year in years" v-bind:value="year">
+                {{ year }}
+                </option>
+            </select>
+            <select v-model="selected_country">
+                <option disabled value="">Proszę wybrać kraj</option>
+                <option v-for="(item, key, index) in countryMapping" v-bind:value="key">
+                {{ item.nazwa }}
+                </option>
+            </select>
+
+            <ol>
+                <table style="width:100%">
+                    <tr>
+                        <th>Origin</th>
+                        <th>Asylum</th>
+                        <th>Value</th>
+                        <th>Year</th>
+                    </tr>
+                    <tr v-for="d in data">
+                        <th>{{ d.origin }}</th>
+                        <th>{{ d.asylum }}</th>
+                        <th>{{ d.value }}</th>
+                        <th>{{ d.year }}</th>
+                    </tr>
+                </table>
+            </ol>
+
 
             <div id="map"></div>
         </div>
