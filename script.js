@@ -63,8 +63,8 @@ function initMap() {
 
 
         map.on('click', 'countries', function (e){
-            country = e.features[0].properties.ISO_A3;
-            countryHighlight(country);
+            app.selected_country = e.features[0].properties.ISO_A3;
+            countryHighlight(app.selected_country);
         });
     });
 

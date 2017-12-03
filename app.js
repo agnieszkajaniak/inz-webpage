@@ -13,8 +13,11 @@ var app = new Vue({
     },
     watch: {
         selected_year: function(val) {
-            countryHighlight(country);
+            countryHighlight(this.selected_country);
             this.data = dataByYear[val];
+        },
+        selected_country: function(val) {
+            countryHighlight(this.selected_country);
         }
     }
 });
