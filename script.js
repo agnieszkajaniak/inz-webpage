@@ -73,28 +73,24 @@ function initMap() {
 
 function countryHighlight (country){ 
     console.log(country);
-    europe.features.forEach((e, i) => europe.features[i].properties['value'] = getMigrationValue(e.properties.ISO_A3, country, app.selected_year));
-    map.getSource('data').setData(europe);
     var filtered = filterData(app.selected_year, country)
-    var strings = filtered.map(e => e.origin + ": " + e.value);
-    map.setFilter("countries_highlight", ["in", "ISO_A3"].concat(filtered.map(e => e.origin)));
+    europe.features.forEach((e, i) => europe.features[i].properties['value'] = getMigrationValue(filtered, e.properties.ISO_A3));
+    map.getSource('data').setData(europe);
+    map.setFilter("countries_highlight", ["in", "ISO_A3"].concat(filtered.map(e => e[app.opositeToPicked()])));
 }
 
-
-function getMigrationValue (origin, asylum, year){
-    value = undefined;
-    for (let e of dataByYear[year]) {
-        if (e.origin == origin && e.asylum == asylum && e.year == year) {
-            value = e.value;
-            break;
+function getMigrationValue (data, country){
+    for (let e of data) {
+        if (e[app.opositeToPicked()] == country) {
+            return e.value;
         }
     }
-    return value;
+    return undefined;
 }
 
-function filterData (year, destination){
+function filterData (year, country){
     var filtered = dataByYear[year];
-    filtered = filtered.filter(e => e.asylum == destination);
+    filtered = filtered.filter(e => e[app.picked] == country);
     return filtered;
 }
 

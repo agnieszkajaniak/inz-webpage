@@ -7,10 +7,19 @@ var app = new Vue({
         data: data,
         years: years,
         countryMapping: countryMapping,
-        picked: 'Imigracja'
+        picked: 'asylum'
     },
     mounted: function() {
         map = initMap();
+    },
+    methods: {
+        opositeToPicked() {
+            if (this.picked == 'asylum') {
+                return 'origin'
+            } else {
+                return 'asylum'
+            }
+        }
     },
     watch: {
         selected_year: function(val) {
@@ -21,7 +30,7 @@ var app = new Vue({
             countryHighlight(this.selected_country);
         },
         picked: function(val) {
-            console.log(app.picked);
+            countryHighlight(this.selected_country);
         }
     }
 });
