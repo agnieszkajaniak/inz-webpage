@@ -24,6 +24,12 @@
                 {{ item.nazwa }}
                 </option>
             </select>
+            <div class='rounded-toggle inline'>
+                <input type='radio' id='emigracja' name='rtoggle' value='Emigracja' v-model='picked'>
+                <label for='emigracja'>Emigracja</label>
+                <input type='radio' id='imigracja' name='rtoggle' value='Imigracja' v-model='picked'>
+                <label for='imigracja'>Imigracja</label>
+            </div>
 
             <ol>
                 <table style="width:100%">

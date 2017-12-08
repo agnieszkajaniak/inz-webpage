@@ -6,7 +6,8 @@ var app = new Vue({
         selected_country: 'Polska',
         data: data,
         years: years,
-        countryMapping: countryMapping
+        countryMapping: countryMapping,
+        picked: 'Imigracja'
     },
     mounted: function() {
         map = initMap();
@@ -18,6 +19,9 @@ var app = new Vue({
         },
         selected_country: function(val) {
             countryHighlight(this.selected_country);
+        },
+        picked: function(val) {
+            console.log(app.picked);
         }
     }
 });

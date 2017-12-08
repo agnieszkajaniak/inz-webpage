@@ -93,7 +93,7 @@ function getMigrationValue (origin, asylum, year){
 }
 
 function filterData (year, destination){
-    var filtered = data.filter(e => e.year == year);
+    var filtered = dataByYear[year];
     filtered = filtered.filter(e => e.asylum == destination);
     return filtered;
 }
