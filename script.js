@@ -4,7 +4,8 @@ function initMap() {
         container: 'map',
         style: 'mapbox://styles/agnieszkajot/cj485493d1o182slb8auqq058',
         center: [16.8752446, 52.4079914],
-        zoom: 2.8
+        zoom: 2.8,
+		minZoom: 2
     });
 
     map.addControl(new mapboxgl.ScaleControl({
@@ -32,7 +33,7 @@ function initMap() {
                 'fill-outline-color': 'rgba(200, 100, 240, 0.6)'
             }
         });
-
+			
         map.addLayer({
             id: 'countries_highlight',
             type: 'fill',
@@ -59,6 +60,28 @@ function initMap() {
             },
             "filter": ["in", "ISO_A3", ""]
         });
+		
+        map.addLayer({
+            id: 'countries_highlight_2',
+            type: 'fill',
+            source: 'data',
+            layout: {
+                visibility: 'visible'
+            },
+            paint: {
+					'fill-color': {
+                    property: 'value',
+                    stops: [
+                        [2000000000, '#AAAAAA'],
+                        [2000000002, '#AAAAAA'] 
+                    ]
+                },
+		        'fill-outline-color': 'rgba(200, 100, 240, 1)'
+            },
+            "filter": ["in", "ISO_A3", ""]
+        });		
+		
+
 
 
 
@@ -73,10 +96,16 @@ function initMap() {
 
 function countryHighlight (country){ 
     console.log(country);
-    var filtered = filterData(app.selected_year, country)
-    europe.features.forEach((e, i) => europe.features[i].properties['value'] = getMigrationValue(filtered, e.properties.ISO_A3));
+    var filtered = filterData(app.selected_year, country);
+    europe.features.forEach((e, i) => { if (e.properties.ISO_A3 == app.selected_country) {
+										europe.features[i].properties['value'] = (2000000001);
+										} else { 
+										europe.features[i].properties['value'] = getMigrationValue(filtered, e.properties.ISO_A3);
+										}
+	});
     map.getSource('data').setData(europe);
     map.setFilter("countries_highlight", ["in", "ISO_A3"].concat(filtered.map(e => e[app.opositeToPicked()])));
+	map.setFilter("countries_highlight_2", ["in", "ISO_A3"].concat(country));
 }
 
 function getMigrationValue (data, country){
