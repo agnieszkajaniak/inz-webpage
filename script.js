@@ -69,14 +69,7 @@ function initMap() {
                 visibility: 'visible'
             },
             paint: {
-					'fill-color': {
-                    property: 'value',
-                    stops: [
-                        [2000000000, '#AAAAAA'],
-                        [2000000002, '#AAAAAA'] 
-                    ]
-                },
-		        'fill-outline-color': 'rgba(200, 100, 240, 1)'
+                'fill-color': 'rgba(123, 123, 123, 1)'
             },
             "filter": ["in", "ISO_A3", ""]
         });		
@@ -97,15 +90,12 @@ function initMap() {
 function countryHighlight (country){ 
     console.log(country);
     var filtered = filterData(app.selected_year, country);
-    europe.features.forEach((e, i) => { if (e.properties.ISO_A3 == app.selected_country) {
-										europe.features[i].properties['value'] = (2000000001);
-										} else { 
-										europe.features[i].properties['value'] = getMigrationValue(filtered, e.properties.ISO_A3);
-										}
-	});
+    filtered = filtered.sort((a, b) => b.value - a.value);
+    europe.features.forEach((e, i) => europe.features[i].properties['value'] = getMigrationValue(filtered, e.properties.ISO_A3));
     map.getSource('data').setData(europe);
     map.setFilter("countries_highlight", ["in", "ISO_A3"].concat(filtered.map(e => e[app.opositeToPicked()])));
-	map.setFilter("countries_highlight_2", ["in", "ISO_A3"].concat(country));
+    map.setFilter("countries_highlight_2", ["in", "ISO_A3"].concat(country));
+    app.filteredData = filtered;
 }
 
 function getMigrationValue (data, country){

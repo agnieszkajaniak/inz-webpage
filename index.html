@@ -31,25 +31,20 @@
                 <label for='imigracja'>Imigracja</label>
             </div>
 
-            <ol>
-                <table style="width:100%">
+            <div id="map"></div>
+
+            <div>
+                <table style="width:100%; display: block; height: 50px; overflow-y: scroll;">
                     <tr>
-                        <th>Origin</th>
-                        <th>Asylum</th>
+                        <th>Country</th>
                         <th>Value</th>
-                        <th>Year</th>
                     </tr>
-                    <tr v-for="d in data">
-                        <th>{{ d.origin }}</th>
-                        <th>{{ d.asylum }}</th>
-                        <th>{{ d.value }}</th>
-                        <th>{{ d.year }}</th>
+                    <tr v-for="d in filteredData">
+                        <td>{{ countryMapping[d[opositeToPicked()]].nazwa }}</td>
+                        <td>{{ d.value }}</td>
                     </tr>
                 </table>
-            </ol>
-
-
-            <div id="map"></div>
+            </div>
         </div>
         <script src="europe.js"></script>
         <script src="country_mapping.js"></script>

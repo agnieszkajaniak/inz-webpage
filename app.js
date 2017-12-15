@@ -7,6 +7,7 @@ var app = new Vue({
         data: data,
         years: years,
         countryMapping: countryMapping,
+        filteredData: [],
         picked: 'asylum'
     },
     mounted: function() {
