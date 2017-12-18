@@ -96,6 +96,7 @@ function countryHighlight (country){
     map.setFilter("countries_highlight", ["in", "ISO_A3"].concat(filtered.map(e => e[app.opositeToPicked()])));
     map.setFilter("countries_highlight_2", ["in", "ISO_A3"].concat(country));
     app.filteredData = filtered;
+    drawChart();
 }
 
 function getMigrationValue (data, country){
@@ -125,3 +126,19 @@ data.forEach(e => {
     }
     dataByYear[e.year].push(e);
 });
+
+google.charts.load("current", {packages:["corechart"]});
+google.charts.setOnLoadCallback(drawChart);
+function drawChart() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Pizza');
+    data.addColumn('number', 'Populartiy');
+    data.addRows(app.filteredData.map(e => [countryMapping[e[app.opositeToPicked()]].nazwa, e.value]));
+    
+    var options = {
+        sliceVisibilityThreshold: .05
+      };
+
+    var chart = new google.visualization.PieChart(document.getElementById('chart-div'));
+    chart.draw(data, options);
+    }
