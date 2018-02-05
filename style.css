@@ -1,16 +1,186 @@
-body {
-    background-color: pink;
-}
-
-#title {
-	text-align: center;
+body{
+	margin: 0;
+	padding: 0;
 }
 
 #map {
-	background-color: white;
 	position: fixed;
     width: 100%;
     height: 100%;
     left: 0;
-    top: 180px;
+    top: 0;
 }
+
+
+h1.title {
+	font-family: Georgia, serif;
+	text-decoration: underline;
+	color: #8889cc;
+	font-size: 50px;
+	font-weight: 700;
+	letter-spacing: -3px;
+	position: absolute;
+	top: 7px;
+	right: 35%;
+}
+
+div.rounded-toggle{
+	font-family: Georgia, serif;
+	font-weight: bold;
+	position: absolute;
+	background-color: #8e8fb9;
+	top: 35%;
+	left: 10px;
+}
+
+div.legend {
+	font-family: Georgia, serif;
+    background-color: #fff;
+    border-radius: 10px;
+    bottom: 60px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.10);
+    padding: 10px;
+    position: absolute;
+    right: 10px;
+	opacity: 0.9;
+}
+
+.legend div span {
+	font-family: Georgia, serif;
+    display: inline-block;
+	border-radius: 50%;
+    height: 15px;
+    margin-right: 5px;
+    width: 15px;
+}
+
+.info a {
+	font-family: Georgia, serif;
+	position: absolute;
+	bottom: 2%;
+	color: #8e8fb9;
+	left: 7%;
+	bottom: 10px;
+	font-size: 20px;
+	font-weight: 800;
+	
+}
+
+div.selected-all{
+	font-family: Georgia, serif;
+	width: 320px;
+	height:80px;
+	border-radius: 10px;
+	background-color: white;
+	padding: 7px;
+	opacity: 0.8;
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	
+}
+
+div.selected-year {
+	position: absolute;
+}
+
+select.dropdown1{
+	position: absolute;
+	font-family: Georgia, serif;
+	font-size: 13px;
+	border-radius: 10px;
+	top: 30px;
+	width: 100px;
+	height: 30px;
+	border: 2px solid #010000;
+	background-color: #8e8fb9;
+}
+
+
+option.list1{
+	color: black;
+}
+
+div.selected-country {
+	position: absolute;
+	left: 150px;
+}
+
+select.dropdown2{
+	font-family: Georgia, serif;
+	border-radius: 10px;
+	position: absolute;
+	top: 30px;
+	width: 150px;
+	height: 30px;
+	border: 2px solid #010000;
+	background-color: #8e8fb9;
+	
+}
+
+option.list2{
+	color: black;
+}
+
+
+
+
+
+
+div.panel {
+	font-family: Georgia, serif;
+	position: absolute;
+	padding: 5px;
+	width: 320px;
+	height: 350px;
+	bottom: 40px;
+	left: 10px;	
+	background-color: white;
+	opacity: 0.8;
+	border-radius: 10px;
+}
+
+
+
+
+
+div.tabelka{
+	font-family: Georgia, serif;
+	color: #61629e;
+	padding: 5px;
+	width: 320px;
+	height: 290px;	
+}
+
+::-webkit-scrollbar {
+	padding: 5px;
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+	border-radius: 10px;
+	
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: #555; 
+}	
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+}
+
+.button{
+	position: absolute;
+	color: #8e8fb9;
+	background-size: 50px 50px;
+	background-color: none;
+	width: 40px;
+	height: 40px;
+	left: 7px;
+	bottom: 0px;
+}
+

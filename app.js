@@ -1,7 +1,7 @@
 var app = new Vue({
     el: '#app',
     data: {
-        title: 'Interaktywna mapa przedstawiająca imigrację na terenie Europy oraz Azji Mniejszej',
+        title: 'Kryzys migracyjny',
         selected_year: 2017,
         selected_country: 'Polska',
         data: data,
@@ -32,6 +32,15 @@ var app = new Vue({
         },
         picked: function(val) {
             countryHighlight(this.selected_country);
+        }
+    },
+    computed: {
+        sortedCountries() {
+            var keys = Object.keys(this.countryMapping)
+              .sort((a, b) => this.countryMapping[a].nazwa.localeCompare(this.countryMapping[b].nazwa));
+            var sorted = {};
+            keys.forEach((k) => sorted[k] = countryMapping[k]);
+            return sorted;
         }
     }
 });

@@ -3,39 +3,79 @@
     <head>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
         <title>Moja strona</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.37.0/mapbox-gl.js'></script>
         <script src="https://www.gstatic.com/charts/loader.js"></script>
+		<script src="https://code.jquery.com/jquery-1.8.3.js" integrity="sha256-dW19+sSjW7V1Q/Z3KD1saC6NcE5TUIhLJzJbrdKzxKc=" crossorigin="anonymous"></script>
         <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.37.0/mapbox-gl.css' rel='stylesheet' />
         <link rel="stylesheet" type="text/css" href="style.css" />
         <link href='https://www.mapbox.com/base/latest/base.css?v1.0' rel='stylesheet' />
-
     </head>
     <body>
         <div id="app">
-            <h1 id="title">{{ title }}</h1>
-
-            <select v-model="selected_year">
-                <option v-for="year in years" v-bind:value="year">
+			<div id="map"></div>
+            <h1 class="title">{{ title }}</h1>	
+		<div id='asylum-legend' class='legend'>
+			<!-- <h2 style='font-family: Georgia, serif; font-weight: bold;'>Legenda</h2> -->
+			<div><span style='background-color: #67000d'></span>200</div>
+			<div><span style='background-color: #a50f15'></span>100</div>
+			<div><span style='background-color: #cb181d'></span>50</div>
+			<div><span style='background-color: #ef3b2c'></span>20</div>
+			<div><span style='background-color: #fb6a4a'></span>10</div>
+			<div><span style='background-color: #fc9272'></span>0</div>
+		</div>
+		<div id='origin-legend' class='legend' style='display: none;'>	
+			<div><span style='background-color: #00441b'></span>50</div>
+			<div><span style='background-color: #006d2c'></span>30</div>
+			<div><span style='background-color: #238b45'></span>20</div>
+			<div><span style='background-color: #41ab5d'></span>10</div>
+			<div><span style='background-color: #74c476'></span>5</div>
+			<div><span style='background-color: #65c458'></span>0</div>
+		</div>
+			<div class="info">
+			<a href="info.html">O stronie...</a>
+			</div>
+            <div class="selected-all">
+			<div class="selected-year">
+			<p> Wybierz rok:</p>
+			<select v-model="selected_year" class='dropdown1'>
+                <option v-for="year in years" v-bind:value="year" class='list1'>
                 {{ year }}
                 </option>
             </select>
-            <select v-model="selected_country">
-                <option disabled value="">Proszę wybrać kraj</option>
-                <option v-for="(item, key, index) in countryMapping" v-bind:value="key">
+			</div>			
+			<div class="selected-country">
+			<p>Wybierz kraj:</p>
+            <select v-model="selected_country" class='dropdown2'>
+                <option disabled value=""  class='list2'>Proszę wybrać kraj</option>
+                <option v-for="(item, key) in sortedCountries" v-bind:value="key" class='list2'>
                 {{ item.nazwa }}
                 </option>
             </select>
-            <div class='rounded-toggle inline'>
+			</div>
+			</div>
+			 <div class='rounded-toggle inline'>
                 <input type='radio' id='emigracja' name='rtoggle' value='origin' v-model='picked'>
                 <label for='emigracja'>Emigracja</label>
                 <input type='radio' id='imigracja' name='rtoggle' value='asylum' v-model='picked'>
                 <label for='imigracja'>Imigracja</label>
             </div>
-
-            <div id="map"></div>
-            <div id="chart-div" style="width: 400px; height: 300px;"></div>
-            <div>
-                <table style="width:100%; display: block; height: 50px; overflow-y: scroll;">
+			<div class='panel'>
+			
+				<div id="1" class='tabelka'>
+                <table style= "width: 300px; height: 275px; display: block; overflow-y: scroll;">
+                    <tr style="position:absolute, top:20px">
+                        <th style="font-family: Georgia, serif; font-weight: bold; border-bottom: 1px solid #ddd;  padding: 5px; text-align: left; width: 140px;">Kraj</th>
+                        <th style="font-family: Georgia, serif; font-weight: bold; border-bottom: 1px solid #ddd;  padding: 5px; text-align: right; width: 140px;">Liczba migrantów</th>
+                    </tr>
+                    <tr v-for="d in filteredData">
+                        <td style="padding: 5px; text-align: left; width: 140px;">{{ countryMapping[d[opositeToPicked()]].nazwa }}</td>
+                        <td style="padding: 5px; text-align: right; width: 140px;">{{ d.value }}</td>
+                    </tr>
+                </table>				
+				</div>
+				<div  id="chart-div" class='chart'  style="border-radius: 10px; width:300px; height: 290px; display:none">				
+                <table style="display: none">
                     <tr>
                         <th>Country</th>
                         <th>Value</th>
@@ -45,8 +85,9 @@
                         <td>{{ d.value }}</td>
                     </tr>
                 </table>
-            </div>
-
+				</div>
+			<button id="btnClick" class='button' style='position: center'><img src="piechart.png" /></button>
+			</div>	
         </div>
         <script src="europe.js"></script>
         <script src="country_mapping.js"></script>
