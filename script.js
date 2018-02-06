@@ -103,6 +103,19 @@ function initMap() {
         });
 
 
+            map.on("mousemove", "countries", function(e) {
+                map.getCanvas().style.cursor = 'pointer';
+                popup.setLngLat(e.lngLat)
+                .setText(countryMapping[e.features[0].properties.ISO_A3].nazwa)
+                .addTo(map);
+            });
+            
+            map.on("mouseleave", "countries", function() {
+                map.getCanvas().style.cursor = '';
+                popup.remove();
+            });
+        
+
 
 
 
@@ -219,4 +232,8 @@ document.addEventListener("DOMContentLoaded", function () {
             $('#1').show().siblings('div').hide();
         }
     });
+});
+
+var popup = new mapboxgl.Popup({
+    closeButton: false
 });
