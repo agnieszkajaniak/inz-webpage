@@ -1,12 +1,16 @@
 body {
     background-image: url("uchodzcy.jpg");
-	background-size: 1700px 900px;
+	background-size: 100% ;
+	background-position: center;
 	background-repeat: no-repeat;
+	margin: 0;
+	padding: 50px;
+
 }
 
 div.contain{
 	background-color: white;
-	opacity: 0.5;
+	opacity: 0.8;
 	text-align:center;
 	margin: auto;
     width: 50%;
