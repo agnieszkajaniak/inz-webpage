@@ -219,6 +219,11 @@ function drawChart() {
     chart.draw(data, options);
 }
 
+function diffImage(img) 
+{
+   if(img.src.match("lista.png")) img.src = "piechart.png";
+   else img.src = "lista.png";
+}
 
 
 document.addEventListener("DOMContentLoaded", function () {
