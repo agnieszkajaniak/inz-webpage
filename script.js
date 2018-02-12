@@ -93,8 +93,8 @@ function initMap() {
                 visibility: 'visible'
             },
             paint: {
-                'fill-color': 'rgba(108, 94, 135, 1)',
-                'fill-outline-color': 'rgba(29, 19, 39, 1)'
+                    'fill-color': 'rgba(255, 255, 0, 0.5)',
+                    'fill-outline-color': 'rgba(29, 19, 39, 1)'
             },
             "filter": ["in", "ISO_A3", ""]
         });
