@@ -202,13 +202,15 @@ function drawChart() {
         sliceVisibilityThreshold: .05,
         width: 300,
         height: 300,
+		pieSliceTextStyle: {
+            color: 'black',
+          },
         chartArea: {
             top: 30,
             left: 10,
             width: 300,
             height: 300
         },
-
         fontSize: 13
 
 

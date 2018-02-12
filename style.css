@@ -54,9 +54,8 @@ div.rounded-toggle{
 
 div.legend {
 	font-family: Georgia, serif;
-	font-size: 19px;
+	font-size: 15px;
 	background-color: white;
-   
     border-radius: 10px;
     bottom: 60px;
     box-shadow: 0 1px 2px rgba(0,0,0,0.10);
@@ -64,16 +63,15 @@ div.legend {
     position: absolute;
     right: 10px;
 	opacity: 0.95;
-	
 }
 
 .legend div span {
 	font-family: Georgia, serif;
     display: inline-block;
 	border-radius: 50%;
-    height: 15px;
+    height: 12px;
     margin-right: 5px;
-    width: 15px;
+    width: 12px;
 }
 
 .info a {
@@ -144,11 +142,6 @@ option.list2{
 	color: black;
 }
 
-
-
-
-
-
 div.panel {
 	font-family: Georgia, serif;
 	position: absolute;
@@ -163,10 +156,6 @@ div.panel {
 	border-radius: 10px;
 	clear: both;
 }
-
-
-
-
 
 div.tabelka{
 	font-family: Georgia, serif;
